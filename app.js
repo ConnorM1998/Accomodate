@@ -12,6 +12,7 @@ app.get("/", function(req, res){
 
 //Adds new route "accomodations", which displays an array that contains an accomodation list of 
 //"name" aswell as "image" to accompany it
+//GET method
 app.get("/accomodations", function(req, res){
     var accomodations = [
         {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
@@ -25,13 +26,17 @@ app.get("/accomodations", function(req, res){
 });
 
 //add POST route
+//POST method
 app.post("/accomodations", function(req,res){
     //Recieve data from a form and add to accomodation array
     //Redirect 'to accomodations' page
     res.send("POST route")
 });
 
-
+//PUT method
+app.get("/accomodations/new", function (req, res){
+    res.render("new.ejs");
+});
 
 //Sets localhost port to 3000, states a message if successful
 app.listen(3000, function(){
