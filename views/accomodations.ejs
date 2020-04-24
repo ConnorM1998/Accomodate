@@ -1,0 +1,9 @@
+<h1>Accomodations Page</h1>
+
+<!-- <%= accomodations %> -->
+<% accomodations.forEach(function(accomodations){ %>
+    <div>
+        <h4><%=accomodations.name %></h4>
+        <img src="<%= accomodations.image %>">
+    </div>
+<% }) %>

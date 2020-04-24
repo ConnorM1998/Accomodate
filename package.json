@@ -1,0 +1,15 @@
+{
+  "name": "v1",
+  "version": "1.0.0",
+  "description": "Accomodation v1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Connor Matthews",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
+  }
+}
