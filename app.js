@@ -20,16 +20,13 @@ app.get("/", function(req, res){
 
 //Adds new route "accomodations", which displays an array that contains an accomodation list of 
 //"name" aswell as "image" to accompany it
-//GET method
+//GET method - Displays all accomodations
 app.get("/accomodations", function(req, res){
-
-
     //Allows the array to be displayed on the "accomodations page"
     res.render("accomodations", {accomodations:accomodations});
-
 });
 
-//add POST route
+//Handles adding new accomodations to the accomodation array, then redirecting to accomodations page
 //POST method
 app.post("/accomodations", function(req,res){
     //Recieve data from a form and add to accomodation array
@@ -41,6 +38,8 @@ app.post("/accomodations", function(req,res){
     res.redirect("/accomodations");
 });
 
+//Handles the form that takes user input, sends POST request to "/accomodations", 
+//which then redirects to "/accomodations" GET (displaying all campgrounds)
 //PUT method
 app.get("/accomodations/new", function (req, res){
     res.render("new.ejs");
