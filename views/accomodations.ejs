@@ -9,20 +9,36 @@
         <p>Here are all the accomodations all around Scotland</p>
         <p>
             <!-- Button that routes user to "/accomodations/new" -->
-            <a class="btn btn-primary btn-large" href="/accomodations/new">Add new Accomodation</a>
+            <a class="btn btn-primary btn-lg" href="/accomodations/new">Add new Accomodation</a>
         </p>
         </div>
     </header>
 
+    <!-- ////////////// -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Popular Accomodations</h3>
+        </div> 
+    </div>
+<!-- ////////////// -->
 
-    <!-- Allows the accomodations specified in app.js to be displayed -->
-    <% accomodations.forEach(function(accomodations){ %>
-        <div>
-            <h4><%= accomodations.name %></h4>
-            <img src="<%= accomodations.image %>">
+    <!-- Handles styling accomodation display (text, grid, etc) -->
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <!-- Allows the accomodations specified in app.js to be displayed -->
+        <% accomodations.forEach(function(accomodations){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class ="thumbnail">
+                    <img src="<%= accomodations.image %>">
+                    <div class-"caption">
+                        <h4><%= accomodations.name %></h4>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+
         </div>
-    <% }) %>
-
-</div>
+    </div>
 <!-- Adds footer to page -->
+
+
 <%- include("partials/footer") %>

@@ -8,8 +8,8 @@ app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
 var accomodations = [
     {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
-    {name: "Crathie Student Village", image: "https://www.rgu.ac.uk/images/Accommodation/Crathie.jpg"},
-    {name: "Garthdee Towers", image: "https://www.rgu.ac.uk/images/Accommodation/GarthdeeTowers.jpg"}
+    {name: "Crathie Student Village", image: "https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"},
+    {name: "Garthdee Towers", image: "https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
 ];
 
 
