@@ -1,8 +1,10 @@
+<!-- Adds header to page -->
 <%- include("partials/header") %>
 
 <h1>Accomodations Page</h1>
 
-<!-- <%= accomodations %> -->
+
+<!-- Allows the accomodations specified in app.js to be displayed -->
 <% accomodations.forEach(function(accomodations){ %>
     <div>
         <h4><%= accomodations.name %></h4>
@@ -10,5 +12,5 @@
     </div>
 <% }) %>
 
-
+<!-- Adds footer to page -->
 <%- include("partials/footer") %>
