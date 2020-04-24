@@ -1,17 +1,28 @@
 <!-- Adds header to page -->
 <%- include("partials/header") %>
+<div class="container">
+    <!-- creates a header container -->
+    <header class="jumbotron">
+        <!-- Container ensures text is not squished on resize -->
+        <div class="container">
+        <h1>Accomodations Page</h1>
+        <p>Here are all the accomodations all around Scotland</p>
+        <p>
+            <!-- Button that routes user to "/accomodations/new" -->
+            <a class="btn btn-primary btn-large" href="/accomodations/new">Add new Accomodation</a>
+        </p>
+        </div>
+    </header>
 
-<h1>Accomodations Page</h1>
 
-<a href="/accomodations/new">Add new Accomodation</a>
+    <!-- Allows the accomodations specified in app.js to be displayed -->
+    <% accomodations.forEach(function(accomodations){ %>
+        <div>
+            <h4><%= accomodations.name %></h4>
+            <img src="<%= accomodations.image %>">
+        </div>
+    <% }) %>
 
-<!-- Allows the accomodations specified in app.js to be displayed -->
-<% accomodations.forEach(function(accomodations){ %>
-    <div>
-        <h4><%= accomodations.name %></h4>
-        <img src="<%= accomodations.image %>">
-    </div>
-<% }) %>
-
+</div>
 <!-- Adds footer to page -->
 <%- include("partials/footer") %>
