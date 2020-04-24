@@ -5,6 +5,14 @@ var bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
+
+var accomodations = [
+    {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
+    {name: "Crathie Student Village", image: "https://www.rgu.ac.uk/images/Accommodation/Crathie.jpg"},
+    {name: "Garthdee Towers", image: "https://www.rgu.ac.uk/images/Accommodation/GarthdeeTowers.jpg"}
+];
+
+
 //Sets the root route to landing.ejs
 app.get("/", function(req, res){
     res.render("landing"); //is views/landing.ejs
@@ -14,11 +22,7 @@ app.get("/", function(req, res){
 //"name" aswell as "image" to accompany it
 //GET method
 app.get("/accomodations", function(req, res){
-    var accomodations = [
-        {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
-        {name: "Crathie Student Village", image: "https://www.rgu.ac.uk/images/Accommodation/Crathie.jpg"},
-        {name: "Garthdee Towers", image: "https://www.rgu.ac.uk/images/Accommodation/GarthdeeTowers.jpg"}
-    ]
+
 
     //Allows the array to be displayed on the "accomodations page"
     res.render("accomodations", {accomodations:accomodations});
@@ -29,8 +33,12 @@ app.get("/accomodations", function(req, res){
 //POST method
 app.post("/accomodations", function(req,res){
     //Recieve data from a form and add to accomodation array
+    var name = req.body.name;
+    var image = req.body.image;
+    var newAccomodation = {name:name, image:image}
+    accomodations.push(newAccomodation)
     //Redirect 'to accomodations' page
-    res.send("POST route")
+    res.redirect("/accomodations");
 });
 
 //PUT method
