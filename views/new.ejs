@@ -1,17 +1,28 @@
 <!-- Adds header to page -->
 <%- include("partials/header") %>
 
-<h1>Add a New Accomodation</h1>
+<div class="container">
+    <div class="row">
 
-<!-- Links back to "/accomodations" POST route in "app.js" -->
-<!-- Recieves data and adds to accomodations array-->
-<form action="/accomodations" method="POST">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="image" placeholder="image url">
-    <button>Submit</button>
+        <h1 style = "text-align: center;">Add a New Accomodation</h1>
+        <div style="width: 30%; margin: 30px auto;">
+            <!-- Links back to "/accomodations" POST route in "app.js" -->
+            <!-- Recieves data and adds to accomodations array-->
+            <form action="/accomodations" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control"type="text" name="image" placeholder="image url">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/accomodations">Current Accomodations</a>
+        </div>
+    </div>
+</div>
 
 
-</form>
-
-<a href="/accomodations">Current Accomodations</a>
 <%- include("partials/footer") %>
