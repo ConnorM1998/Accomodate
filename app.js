@@ -9,7 +9,6 @@ mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
-
 //SCHEMA
 var accomodationSchema = new mongoose.Schema({
     name: String,
@@ -42,6 +41,7 @@ app.get("/", function(req, res){
 //Adds new route "accomodations", which displays an array that contains an accomodation list of 
 //"name" aswell as "image" to accompany it
 //GET method - Displays all accomodations
+//INDEX ROUTE - shows all accomodations
 app.get("/accomodations", function(req, res){
     //Get all accomodations from the database
     Accomodation.find({}, function(err, allAccomodation){
@@ -60,6 +60,7 @@ app.get("/accomodations", function(req, res){
 
 //Handles adding new accomodations to the accomodation array, then redirecting to accomodations page
 //POST method
+//CREATE ROUTE- adds new accomodation to db
 app.post("/accomodations", function(req,res){
     //Recieve data from a form and add to accomodation array
     var name = req.body.name;
@@ -81,9 +82,18 @@ app.post("/accomodations", function(req,res){
 //Handles the form that takes user input, sends POST request to "/accomodations", 
 //which then redirects to "/accomodations" GET (displaying all accomodations)
 //PUT method
+//NEW ROUTE - displays form to create new accomodation
 app.get("/accomodations/new", function (req, res){
     res.render("new.ejs");
 });
+
+
+app.get("/accomodations/:id", function(req, res){
+    //find accomodation with provided ID
+    //render show template of that accomodation
+    res.send("SHOWPAGE");
+});
+
 
 //Sets localhost port to 3000, states a message if successful
 app.listen(3000, function(){
