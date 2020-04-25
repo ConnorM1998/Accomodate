@@ -12,7 +12,8 @@ app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 //SCHEMA
 var accomodationSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 var Accomodation = mongoose.model("Accomodation", accomodationSchema);
@@ -20,8 +21,10 @@ var Accomodation = mongoose.model("Accomodation", accomodationSchema);
 // Accomodation.create(
 //     {   
 //         name: "test", 
-//         image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-//     }, function(err, accomodation){
+//         image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+//         description: "THis is a description test"
+//     }, 
+//     function(err, accomodation){
 //         if(err){
 //             console.log(err)
 //         } else {
@@ -50,9 +53,7 @@ app.get("/accomodations", function(req, res){
         } else {     
             //Allows the database to be displayed on the "accomodations page"       
             res.render("accomodations", {accomodations:allAccomodation});
-
         }
-
 
     })
 
@@ -88,10 +89,11 @@ app.get("/accomodations/new", function (req, res){
 });
 
 
+//SHOW - expands information on an individual accomodation
 app.get("/accomodations/:id", function(req, res){
     //find accomodation with provided ID
     //render show template of that accomodation
-    res.send("SHOWPAGE");
+    res.send("show");
 });
 
 
