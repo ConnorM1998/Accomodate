@@ -1,10 +1,34 @@
 var express = require("express");
 var app = express();
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
+//27017 = mongoDB's default port that mongod is running on
+mongoose.connect("mongodb://localhost:27017/accomodate");
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
+
+//SCHEMA
+var accomodationSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+var Accomodation = mongoose.model("Accomodation", accomodationSchema);
+
+Accomodation.create(
+    {   
+        name: "test", 
+        image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+    }, function(err, accomodation){
+        if(err){
+            console.log(err)
+        } else {
+            console.log("NEW ACCOMODATION: ");
+            console.log(accomodation);
+        }
+    });
 
 var accomodations = [
     {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
@@ -39,7 +63,7 @@ app.post("/accomodations", function(req,res){
 });
 
 //Handles the form that takes user input, sends POST request to "/accomodations", 
-//which then redirects to "/accomodations" GET (displaying all campgrounds)
+//which then redirects to "/accomodations" GET (displaying all accomodations)
 //PUT method
 app.get("/accomodations/new", function (req, res){
     res.render("new.ejs");
