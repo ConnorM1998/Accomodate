@@ -1,1 +1,10 @@
-<h1>Show template</h1>
+<!-- Adds header to page -->
+<%- include("partials/header") %>
+
+<h1><%=accomodations.name%></h1>
+
+<img src="<%= accomodations.image %>">
+
+<p><%= accomodations.description %></p>
+
+<%- include("partials/footer") %>

@@ -52,7 +52,7 @@ app.get("/accomodations", function(req, res){
             console.log(err);
         } else {     
             //Allows the database to be displayed on the "accomodations page"       
-            res.render("accomodations", {accomodations:allAccomodation});
+            res.render("index", {accomodations:allAccomodation});
         }
 
     })
@@ -63,10 +63,12 @@ app.get("/accomodations", function(req, res){
 //POST method
 //CREATE ROUTE- adds new accomodation to db
 app.post("/accomodations", function(req,res){
-    //Recieve data from a form and add to accomodation array
+    //Recieve data from a form and add to accomodation db
     var name = req.body.name;
     var image = req.body.image;
-    var newAccomodation = {name:name, image:image}
+    var desc = req.body.description;
+
+    var newAccomodation = {name:name, image:image, description:desc}
     //create new Accomodation + save to db
     Accomodation.create(newAccomodation, function(err, createdAccomodation){
         if(err){
@@ -92,8 +94,16 @@ app.get("/accomodations/new", function (req, res){
 //SHOW - expands information on an individual accomodation
 app.get("/accomodations/:id", function(req, res){
     //find accomodation with provided ID
-    //render show template of that accomodation
-    res.send("show");
+    Accomodation.findById(req.params.id, function(err, foundAccomodation){
+        if(err){
+            console.log(err);
+        } else {
+            //render show template of that accomodation
+            res.render("show", {accomodations: foundAccomodation});
+        }
+
+    });
+
 });
 
 
