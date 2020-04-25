@@ -4,7 +4,8 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 //27017 = mongoDB's default port that mongod is running on
-mongoose.connect("mongodb://localhost:27017/accomodate");
+mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
@@ -17,24 +18,20 @@ var accomodationSchema = new mongoose.Schema({
 
 var Accomodation = mongoose.model("Accomodation", accomodationSchema);
 
-Accomodation.create(
-    {   
-        name: "test", 
-        image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    }, function(err, accomodation){
-        if(err){
-            console.log(err)
-        } else {
-            console.log("NEW ACCOMODATION: ");
-            console.log(accomodation);
-        }
-    });
+// Accomodation.create(
+//     {   
+//         name: "test", 
+//         image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+//     }, function(err, accomodation){
+//         if(err){
+//             console.log(err)
+//         } else {
+//             console.log("NEW ACCOMODATION: ");
+//             console.log(accomodation);
+//         }
+//     });
 
-var accomodations = [
-    {name: "Woolman hill", image: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"},
-    {name: "Crathie Student Village", image: "https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"},
-    {name: "Garthdee Towers", image: "https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"}
-];
+
 
 
 //Sets the root route to landing.ejs
@@ -46,8 +43,19 @@ app.get("/", function(req, res){
 //"name" aswell as "image" to accompany it
 //GET method - Displays all accomodations
 app.get("/accomodations", function(req, res){
-    //Allows the array to be displayed on the "accomodations page"
-    res.render("accomodations", {accomodations:accomodations});
+    //Get all accomodations from the database
+    Accomodation.find({}, function(err, allAccomodation){
+        if(err){
+            console.log(err);
+        } else {     
+            //Allows the database to be displayed on the "accomodations page"       
+            res.render("accomodations", {accomodations:allAccomodation});
+
+        }
+
+
+    })
+
 });
 
 //Handles adding new accomodations to the accomodation array, then redirecting to accomodations page
@@ -57,9 +65,17 @@ app.post("/accomodations", function(req,res){
     var name = req.body.name;
     var image = req.body.image;
     var newAccomodation = {name:name, image:image}
-    accomodations.push(newAccomodation)
-    //Redirect 'to accomodations' page
-    res.redirect("/accomodations");
+    //create new Accomodation + save to db
+    Accomodation.create(newAccomodation, function(err, createdAccomodation){
+        if(err){
+            console.log(err)
+        } else {
+            //Redirect to 'accomodations' page
+            res.redirect("/accomodations");
+        }
+    });
+
+
 });
 
 //Handles the form that takes user input, sends POST request to "/accomodations", 
