@@ -2,6 +2,8 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Accomodation = require("./models/accomodation");
+
 
 //27017 = mongoDB's default port that mongod is running on
 mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
@@ -9,14 +11,7 @@ mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 
-//SCHEMA
-var accomodationSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
 
-var Accomodation = mongoose.model("Accomodation", accomodationSchema);
 
 // Accomodation.create(
 //     {   
