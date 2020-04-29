@@ -7,4 +7,14 @@
 
 <p><%= accomodations.description %></p>
 
+<!-- Loops through all the comments on an accomodation, creates paragraph 
+that has comment's author bolded (strong) and comment
+-- Displays paragraph for each comment  -->
+<% accomodations.comments.forEach(function(comment){ %>
+    <p>
+        <strong><%= comment.author %></strong> - <%= comment.text %>
+    </p>
+<% }) %>
+
+
 <%- include("partials/footer") %>

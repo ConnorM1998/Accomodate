@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Accomodation = require("./models/accomodation");
+var seedDB = require("./seeds")
 
 
 //27017 = mongoDB's default port that mongod is running on
@@ -10,24 +11,7 @@ mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: tr
 mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
-
-
-
-// Accomodation.create(
-//     {   
-//         name: "test", 
-//         image: "https://images.pexels.com/photos/65438/pexels-photo-65438.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-//         description: "THis is a description test"
-//     }, 
-//     function(err, accomodation){
-//         if(err){
-//             console.log(err)
-//         } else {
-//             console.log("NEW ACCOMODATION: ");
-//             console.log(accomodation);
-//         }
-//     });
-
+seedDB(); //fills db with generic accomodations + comment
 
 
 
@@ -89,7 +73,7 @@ app.get("/accomodations/new", function (req, res){
 //SHOW - expands information on an individual accomodation
 app.get("/accomodations/:id", function(req, res){
     //find accomodation with provided ID
-    Accomodation.findById(req.params.id, function(err, foundAccomodation){
+    Accomodation.findById(req.params.id).populate("comments").exec(function(err, foundAccomodation){  //.populate adds the comments (not just ID) 
         if(err){
             console.log(err);
         } else {

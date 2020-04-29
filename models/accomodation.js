@@ -6,7 +6,13 @@ var mongoose = require("mongoose");
 var accomodationSchema = new mongoose.Schema({
     name: String,
     image: String,
-    description: String
+    description: String,
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"    
+        }
+    ]
 });
 
 //IMPORTANT-allows the module to be exported for use in app.js
