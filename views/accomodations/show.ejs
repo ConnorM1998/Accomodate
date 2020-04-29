@@ -1,24 +1,54 @@
 <!-- Adds header to page -->
 <%- include("../partials/header") %>
 
-<h1><%=accomodation.name%></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Accomodate</p>
+            <div class="list-group">
+                <li class="list-group-item active">Test1</li>
+                <li class="list-group-item">Test2</li>
+                <li class="list-group-item">Test3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= accomodation.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$3000p/t</h4>
+                    <h3><a><%=accomodation.name%></a></h3>
+                    <p><%= accomodation.description %></p>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/accomodations/<%= accomodation._id%>/comments/new">Add new comment</a>
+                </div>
+                <hr>
+                <!-- Loops through all the comments on an accomodation, creates paragraph 
+                that has comment's author bolded (strong) and comment
+                -- Displays paragraph for each comment  -->
+                <% accomodation.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12"></div>
+                        <strong><%= comment.author %></strong>
+                        <span class="pull-right">2 hours ago</span>
+                        <p>
+                            <%= comment.text %>
+                        </p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
 
-<img src="<%= accomodation.image %>">
 
-<p><%= accomodation.description %></p>
 
-<p>
-    <a class="btn btn-success" href="/accomodations/<%= accomodation._id%>/comments/new">Add new comment</a>
-</p>
 
-<!-- Loops through all the comments on an accomodation, creates paragraph 
-that has comment's author bolded (strong) and comment
--- Displays paragraph for each comment  -->
-<% accomodation.comments.forEach(function(comment){ %>
-    <p>
-        <strong><%= comment.author %></strong> - <%= comment.text %>
-    </p>
-<% }) %>
+
+
+
 
 
 <%- include("../partials/footer") %>
