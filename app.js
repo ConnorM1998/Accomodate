@@ -3,8 +3,8 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var Accomodation = require("./models/accomodation");
-var seedDB = require("./seeds")
-
+var seedDB = require("./seeds");
+var Comment = require("./models/comment");
 
 //27017 = mongoDB's default port that mongod is running on
 mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
@@ -31,11 +31,11 @@ app.get("/accomodations", function(req, res){
             console.log(err);
         } else {     
             //Allows the database to be displayed on the "accomodations page"       
-            res.render("index", {accomodations:allAccomodation});
+            //res.render("accomodations/index", {accomodations:allAccomodation});
+            res.render("accomodations/index", {accomodations:allAccomodation});
+
         }
-
-    })
-
+    });
 });
 
 //Handles adding new accomodations to the accomodation array, then redirecting to accomodations page
@@ -57,8 +57,6 @@ app.post("/accomodations", function(req,res){
             res.redirect("/accomodations");
         }
     });
-
-
 });
 
 //Handles the form that takes user input, sends POST request to "/accomodations", 
@@ -66,24 +64,63 @@ app.post("/accomodations", function(req,res){
 //PUT method
 //NEW ROUTE - displays form to create new accomodation
 app.get("/accomodations/new", function (req, res){
-    res.render("new.ejs");
+    res.render("accomodations/new");
 });
 
 
 //SHOW - expands information on an individual accomodation
 app.get("/accomodations/:id", function(req, res){
     //find accomodation with provided ID
+    //Populates comment array on accomodation
     Accomodation.findById(req.params.id).populate("comments").exec(function(err, foundAccomodation){  //.populate adds the comments (not just ID) 
         if(err){
             console.log(err);
         } else {
+            console.log(foundAccomodation)
             //render show template of that accomodation
-            res.render("show", {accomodations: foundAccomodation});
+            res.render("accomodations/show", {accomodation: foundAccomodation});
         }
-
     });
-
 });
+
+//==================
+//NESTED COMMENT ROUTES
+//==================
+app.get("/accomodations/:id/comments/new", function(req, res){
+    //find accomodation by the ID
+    Accomodation.findById(req.params.id, function(err, accomodation){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("comments/new", {accomodation: accomodation});
+        }
+    })
+});
+
+app.post("/accomodations/:id/comments", function(req, res){
+    //lookup accomodation using ID
+    Accomodation.findById(req.params.id, function(err, accomdodation){
+        if(err){
+            console.log(err)
+            res.redirect("/accomodations");
+        } else {
+            console.log(req.body.comment);
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                } else {
+                    accomdodation.comments.push(comment);
+                    accomdodation.save();
+                    res.redirect('/accomodations/'+accomdodation._id);
+                }
+            });
+        }
+    });
+    //create new comment
+    //connect the new comment to the accomdodation
+    //redirect to accomodations show page
+});
+
 
 
 //Sets localhost port to 3000, states a message if successful

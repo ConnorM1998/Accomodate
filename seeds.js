@@ -57,8 +57,6 @@ function seedDB(){
         });
     });
 
-
-
     //Add Comments to Accomodations
 }
 
