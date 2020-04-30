@@ -5,6 +5,9 @@ var mongoose = require("mongoose");
 var Accomodation = require("./models/accomodation");
 var seedDB = require("./seeds");
 var Comment = require("./models/comment");
+var passport = require("passport");
+var localPassport = require("passport-local");
+var User = require("./models/user");
 
 //27017 = mongoDB's default port that mongod is running on
 mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});

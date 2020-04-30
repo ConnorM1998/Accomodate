@@ -21,10 +21,6 @@
                 </div>
             </div>
             <div class="well">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/accomodations/<%= accomodation._id%>/comments/new">Add new comment</a>
-                </div>
-                <hr>
                 <!-- Loops through all the comments on an accomodation, creates paragraph 
                 that has comment's author bolded (strong) and comment
                 -- Displays paragraph for each comment  -->
@@ -38,6 +34,10 @@
                         </p>
                     </div>
                 <% }) %>
+                <hr>
+                <div class="text-right">
+                    <a class="btn btn-success" href="/accomodations/<%= accomodation._id%>/comments/new">Add new comment</a>
+                </div>
             </div>
         </div>
     </div>
