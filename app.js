@@ -105,7 +105,8 @@ app.get("/accomodations/:id", function(req, res){
 //==================
 //NESTED COMMENT ROUTES
 //==================
-app.get("/accomodations/:id/comments/new", function(req, res){
+//isLogged checks if the user is logged in, if so they may add a new comment
+app.get("/accomodations/:id/comments/new",isLoggedIn, function(req, res){
     //find accomodation by the ID
     Accomodation.findById(req.params.id, function(err, accomodation){
         if(err){
@@ -142,7 +143,7 @@ app.post("/accomodations/:id/comments", function(req, res){
 
 
 
-//AUTH ROUTES
+//=============== AUTH ROUTES
 //show register form
 app.get("/register", function(req, res){
     res.render("register");
@@ -163,6 +164,35 @@ app.post("/register", function(req, res){
     //res.send("Signing user up")
 });
 
+//show login form
+app.get("/login", function(req,res){
+    res.render("login")
+});
+//handling login logic - compares input to accounts in database and decides redirect location
+//"/login", -> middleware -> callback
+app.post("/login", passport.authenticate("local", 
+    {
+        successRedirect: "/accomodations",
+        failureRedirect: "/login"
+    }), function(req,res){
+    //res.send("Login logic test");
+});
+
+//logout route
+app.get("/logout", function(req, res){
+    req.logOut();
+    res.redirect("/accomodations");
+});
+
+
+//
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        //Next refers to the next step in the function (just carries on), else it redirects
+        return next();
+    }
+    res.redirect("/login");
+}
 
 
 
