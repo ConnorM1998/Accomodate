@@ -18,6 +18,21 @@ app.use(express.static(__dirname + "/public"));
 seedDB(); //fills db with generic accomodations + comment
 
 
+//PASSPORT CONFIG
+app.use(require("express-session")({
+    secret: "Secret Test",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localPassport(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+
 
 //Sets the root route to landing.ejs
 app.get("/", function(req, res){
@@ -124,6 +139,30 @@ app.post("/accomodations/:id/comments", function(req, res){
     //connect the new comment to the accomdodation
     //redirect to accomodations show page
 });
+
+
+
+//AUTH ROUTES
+//show register form
+app.get("/register", function(req, res){
+    res.render("register");
+});
+//handles sign up logic
+app.post("/register", function(req, res){
+    //recieves data from form
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("register")
+        }
+        passport.authenticate("local")(req,res, function(){
+            res.redirect("/accomodations");
+        });
+    });
+    //res.send("Signing user up")
+});
+
 
 
 
