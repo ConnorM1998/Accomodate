@@ -30,10 +30,11 @@ passport.use(new localPassport(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//Passes the request.user to all templates (handles whether to add Logout to header)
+//Passes the request.user to all templates/routes (handles whether to add Logout to header)
+//empty-if no one logged in | contains username + id of user if logged in
 app.use(function(req,res,next){
     res.locals.currentUser = req.user;
-    next();
+    next(); //tells the function to carry on
 });
 
 
