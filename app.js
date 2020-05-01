@@ -30,6 +30,12 @@ passport.use(new localPassport(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//Passes the request.user to all templates (handles whether to add Logout to header)
+app.use(function(req,res,next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 
 
 
@@ -51,7 +57,7 @@ app.get("/accomodations", function(req, res){
         } else {     
             //Allows the database to be displayed on the "accomodations page"       
             //res.render("accomodations/index", {accomodations:allAccomodation});
-            res.render("accomodations/index", {accomodations:allAccomodation});
+            res.render("accomodations/index", {accomodations:allAccomodation, currentUser: req.user}); //
 
         }
     });

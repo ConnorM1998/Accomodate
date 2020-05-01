@@ -18,8 +18,18 @@ var accData = [
     },
     {
         name: "Earth", 
-        image: "https://images.pexels.com/photos/932328/pexels-photo-932328.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        image: "https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         description: "Is she flat or round?"
+    },
+    {
+        name: "Jupiter", 
+        image: "https://images.pexels.com/photos/3798187/pexels-photo-3798187.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        description: "too hot in here"
+    },
+    {
+        name: "Sun", 
+        image: "https://images.pexels.com/photos/39561/solar-flare-sun-eruption-energy-39561.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        description: "too hot in here"
     }
 ]
 
