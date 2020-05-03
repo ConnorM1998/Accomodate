@@ -67,6 +67,7 @@ app.use(indexRoutes);
 
 
 //Sets localhost port to 3000, states a message if successful
-app.listen(3000, function(){
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
     console.log("The Server has started");
 })
