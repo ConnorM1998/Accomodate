@@ -38,8 +38,15 @@ expressRouter.post("/accomodations/:id/comments", function(req, res){
                 if(err){
                     console.log(err);
                 } else {
+                    //--add username + id to comments
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username
+                    //console.log("New comments username will be: " + req.user.username);
+                    //--then save comment
+                    comment.save();
+                    
                     accomdodation.comments.push(comment);
-                    accomdodation.save();
+                    accomdodation.save();                    
                     res.redirect('/accomodations/'+accomdodation._id);
                 }
             });

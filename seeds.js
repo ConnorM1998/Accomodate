@@ -36,35 +36,35 @@ var accData = [
 function seedDB(){
     //Removes all Accomodations
     Accomodation.remove({}, function(err){
-        if(err){
-            console.log(err);
-        }
-        console.log("Removed Accomodations!")
-        //Adds Generic Accomodations - Loops through the accData array, adding each accomodation
-        //Needs to be in here so added after initial removal, otherwise random  
-        accData.forEach(function(seed){
-            Accomodation.create(seed, function(err, accomodation){
-                if(err){
-                    console.log(err)
-                } else {
-                    console.log("Added an Accomodation")
-                    //Create a comment for the accomodation
-                    Comment.create(
-                        {
-                            text:"Yeah it's okay",
-                            author: "User-1"
-                        }, function(err, comment){
-                            if(err){
-                                console.log(err)
-                            } else{
-                                accomodation.comments.push(comment); //assoiciates it with an accomodation - pushing it into 'comments' array for the acommodations
-                                accomodation.save()
-                                console.log("Comment Created")
-                            }
-                        });
-                } 
-            });
-        });
+        // if(err){
+        //     console.log(err);
+        // }
+        // console.log("Removed Accomodations!")
+        // //Adds Generic Accomodations - Loops through the accData array, adding each accomodation
+        // //Needs to be in here so added after initial removal, otherwise random  
+        // accData.forEach(function(seed){
+        //     Accomodation.create(seed, function(err, accomodation){
+        //         if(err){
+        //             console.log(err)
+        //         } else {
+        //             console.log("Added an Accomodation")
+        //             //Create a comment for the accomodation
+        //             Comment.create(
+        //                 {
+        //                     text:"Yeah it's okay",
+        //                     author: "User-1"
+        //                 }, function(err, comment){
+        //                     if(err){
+        //                         console.log(err)
+        //                     } else{
+        //                         accomodation.comments.push(comment); //assoiciates it with an accomodation - pushing it into 'comments' array for the acommodations
+        //                         accomodation.save()
+        //                         console.log("Comment Created")
+        //                     }
+        //                 });
+        //         } 
+        //     });
+        // });
     });
 
     //Add Comments to Accomodations
