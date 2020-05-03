@@ -27,19 +27,27 @@ expressRouter.get("/accomodations", function(req, res){
 //Handles adding new accomodations to the accomodation array, then redirecting to accomodations page
 //POST method
 //CREATE ROUTE- adds new accomodation to db
-expressRouter.post("/accomodations", function(req,res){
+expressRouter.post("/accomodations", isLoggedIn, function(req,res){
     //Recieve data from a form and add to accomodation db
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
 
-    var newAccomodation = {name:name, image:image, description:desc}
+    //THe user that added the accomodation
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+
+    var newAccomodation = {name:name, image:image, description:desc, author:author}
+    console.log(req.user);
     //create new Accomodation + save to db
     Accomodation.create(newAccomodation, function(err, createdAccomodation){
         if(err){
             console.log(err)
         } else {
             //Redirect to 'accomodations' page
+            console.log(createdAccomodation);
             res.redirect("/accomodations");
         }
     });
@@ -49,7 +57,7 @@ expressRouter.post("/accomodations", function(req,res){
 //which then redirects to "/accomodations" GET (displaying all accomodations)
 //PUT method
 //NEW ROUTE - displays form to create new accomodation
-expressRouter.get("/accomodations/new", function (req, res){
+expressRouter.get("/accomodations/new", isLoggedIn, function (req, res){
     res.render("accomodations/new");
 });
 
@@ -68,5 +76,14 @@ expressRouter.get("/accomodations/:id", function(req, res){
         }
     });
 });
+
+//middleware
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()){
+        //Next refers to the next step in the function (just carries on), else it redirects
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = expressRouter;

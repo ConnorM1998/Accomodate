@@ -7,6 +7,14 @@ var accomodationSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String,
+    author: {       //Added so a link between the user and added accomodation is made
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+            
+        },
+        username: String
+    },
     comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
