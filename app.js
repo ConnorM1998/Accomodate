@@ -15,14 +15,17 @@ var commentRoutes = require("./routes/comments")
 var indexRoutes = require("./routes/index")
 
 
-mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useCreateIndex: true
-}).then(() => {
-    console.log("Connected to Atlas DB");
-}).catch(err => {
-    console.log('ERROR:', err.message);
-});
+mongoose.connect("mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.set('useUnifiedTopology', true);
+
+// mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log("Connected to Atlas DB");
+// }).catch(err => {
+//     console.log('ERROR:', err.message);
+// });
 
 //======LOCAL
 //27017 = mongoDB's default port that mongod is running on
