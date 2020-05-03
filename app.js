@@ -9,6 +9,12 @@ var passport = require("passport");
 var localPassport = require("passport-local");
 var User = require("./models/user");
 
+//requiring routes
+var accRoutes = require("./routes/accomodations")
+var commentRoutes = require("./routes/comments")
+var indexRoutes = require("./routes/index")
+
+
 mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true
@@ -17,13 +23,6 @@ mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?r
 }).catch(err => {
     console.log('ERROR:', err.message);
 });
-
-//requiring routes
-var accRoutes = require("./routes/accomodations")
-var commentRoutes = require("./routes/comments")
-var indexRoutes = require("./routes/index")
-
-
 
 //27017 = mongoDB's default port that mongod is running on
 //mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
