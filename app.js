@@ -27,7 +27,7 @@ var indexRoutes = require("./routes/index")
 
 //27017 = mongoDB's default port that mongod is running on
 //mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
-mongoose.set('useUnifiedTopology', true);
+//mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 app.use(express.static(__dirname + "/public"));
