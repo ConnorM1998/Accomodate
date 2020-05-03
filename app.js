@@ -24,6 +24,7 @@ mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?r
     console.log('ERROR:', err.message);
 });
 
+//======LOCAL
 //27017 = mongoDB's default port that mongod is running on
 //mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
 //mongoose.set('useUnifiedTopology', true);
