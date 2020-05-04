@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-p
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 app.use(express.static(__dirname + "/public"));
 
-//seedDB(); //fills db with generic accomodations + comment
+seedDB(); //fills db with generic accomodations + comment
 
 
 //PASSPORT CONFIG
