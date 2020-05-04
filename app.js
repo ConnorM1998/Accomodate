@@ -2,11 +2,11 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var passport = require("passport");
+var localPassport = require("passport-local");
 var Accomodation = require("./models/accomodation");
 var seedDB = require("./seeds");
 var Comment = require("./models/comment");
-var passport = require("passport");
-var localPassport = require("passport-local");
 var User = require("./models/user");
 
 //requiring routes
@@ -15,22 +15,20 @@ var commentRoutes = require("./routes/comments")
 var indexRoutes = require("./routes/index")
 
 
-// mongoose.connect("mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser: true});
-// mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useCreateIndex: true
-}).then(() => {
-    console.log("Connected to Atlas DB");
-}).catch(err => {
-    console.log('ERROR:', err.message);
-});
+// mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+// }).then(() => {
+//     console.log("Connected to Atlas DB");
+// }).catch(err => {
+//     console.log('ERROR:', err.message);
+// });
 
 //======LOCAL
-//27017 = mongoDB's default port that mongod is running on
-//mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
-//mongoose.set('useUnifiedTopology', true);
+// 27017 = mongoDB's default port that mongod is running on
+mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.set('useUnifiedTopology', true);
 
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension

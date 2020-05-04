@@ -40,7 +40,7 @@ expressRouter.post("/accomodations/:id/comments", function(req, res){
                 } else {
                     //--add username + id to comments
                     comment.author.id = req.user._id;
-                    comment.author.username = req.user.username
+                    comment.author.username = req.user.username;
                     //console.log("New comments username will be: " + req.user.username);
                     //--then save comment
                     comment.save();

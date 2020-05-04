@@ -31,6 +31,7 @@ expressRouter.post("/accomodations", isLoggedIn, function(req,res){
     //Recieve data from a form and add to accomodation db
     var name = req.body.name;
     var image = req.body.image;
+    var price = req.body.price;
     var desc = req.body.description;
 
     //THe user that added the accomodation
@@ -39,7 +40,7 @@ expressRouter.post("/accomodations", isLoggedIn, function(req,res){
         username: req.user.username
     }
 
-    var newAccomodation = {name:name, image:image, description:desc, author:author}
+    var newAccomodation = {name:name, image:image, price:price, description:desc, author:author}
     console.log(req.user);
     //create new Accomodation + save to db
     Accomodation.create(newAccomodation, function(err, createdAccomodation){
