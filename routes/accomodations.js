@@ -78,45 +78,6 @@ expressRouter.get("/accomodations/:id", function(req, res){
     });
 });
 
-//EDIT ACCOMDOATION ROUTE (FORM HAS TO SUBMIT TO UPDATE - THUS REASON FOR BOTH)
-expressRouter.get("/accomodations/:id/edit", function (req, res){
-    Accomodation.findById(req.params.id, function(err, foundAccomodation){
-        if(err){
-            res.redirect("/accomodations")
-        } else {
-            res.render("accomodations/edit", {accomodation: foundAccomodation}); //passes the id of the accomodation that is being edited
-        }
-    });
-});
-
-//UPDATE ACCOMODATION ROUTE
-expressRouter.put("/accomodations/:id"), function (req, res){
-    //find and update the correct accomodation
-    //redirect to accomodation (to show changes)
-    //newData = {name: req.body.name, image: req.body.image, price: req.body.price, desc : req.body.description}
-    Accomodation.findByIdAndUpdate(req.params.id, req.body.accomodationGroup, function(err, updatedAccomodation){
-        if(err) {
-            res.redirect("/accomodations");
-        } else {
-            res.redirect("/accomodations/" + req.params.id);
-        }
-    });
-};
-
-
-//DESTROY ACCOMODATION ROUTE
-expressRouter.delete("/accomodations/:id", function(req, res){
-    Accomodation.findByIdAndRemove(req.params.accomodationid, function(err){
-        if(err){
-            res.redirect("/accomodations");
-        } else {
-            res.redirect("/accomodations");
-        }
-    });
-    //res.send("YOU ARE DELETING")
-});
-
-
 //middleware
 function isLoggedIn(req,res,next){
     if(req.isAuthenticated()){

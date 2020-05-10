@@ -4,12 +4,10 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var localPassport = require("passport-local");
-var methodOverride = require("method-override");
 var Accomodation = require("./models/accomodation");
+var seedDB = require("./seeds");
 var Comment = require("./models/comment");
 var User = require("./models/user");
-var seedDB = require("./seeds");
-
 
 //requiring routes
 var accRoutes = require("./routes/accomodations")
@@ -18,25 +16,23 @@ var indexRoutes = require("./routes/index")
 
 
 
-// mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-// }).then(() => {
-//     console.log("Connected to Atlas DB");
-// }).catch(err => {
-//     console.log('ERROR:', err.message);
-// });
+mongoose.connect('mongodb+srv://admin:P@ssw0rd@cluster0-xkflm.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connected to Atlas DB");
+}).catch(err => {
+    console.log('ERROR:', err.message);
+});
 
-//======LOCAL
-// 27017 = mongoDB's default port that mongod is running on
-mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
+// //======LOCAL
+// // 27017 = mongoDB's default port that mongod is running on
+// mongoose.connect("mongodb://localhost:27017/accomodate", {useUnifiedTopology: true, useNewUrlParser: true});
+// mongoose.set('useUnifiedTopology', true);
 
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));  //Tell methodOveride what to look for
 
 seedDB(); //fills db with generic accomodations + comment
 
