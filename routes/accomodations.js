@@ -78,6 +78,35 @@ expressRouter.get("/accomodations/:id", function(req, res){
     });
 });
 
+
+//Edit accomodation
+expressRouter.get("/accomodations/:id/edit", function(req, res){
+    Accomodation.findById(req.params.id, function(err, foundAccomodation){
+        if(err){
+            res.redirect("/accomodations")
+        }else {
+            res.render("accomodations/edit", {accomodation: foundAccomodation});
+        }
+    });
+});
+
+
+
+//Update accomodation
+expressRouter.put("/accomodations/:id", function(req, res){
+    //find and update correct accomodation
+    Accomodation.findByIdAndUpdate(req.params.id, req.body.accomodation, function(err, updatedAcc){
+        if(err){
+            res.redirect("/");
+        } else {
+            res.redirect("/accomodations/" + req.params.id);
+        }
+    });
+    //redirect to index
+});
+
+
+
 //middleware
 function isLoggedIn(req,res,next){
     if(req.isAuthenticated()){

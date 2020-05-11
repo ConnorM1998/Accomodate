@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require("passport");
 var localPassport = require("passport-local");
+var methodOverride = require("method-override");
 var Accomodation = require("./models/accomodation");
 var seedDB = require("./seeds");
 var Comment = require("./models/comment");
@@ -33,6 +34,7 @@ mongoose.set('useUnifiedTopology', true);
 app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-parser
 app.set("view engine", "ejs"); //Removes the need for adding ejs file extension
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 seedDB(); //fills db with generic accomodations + comment
 
