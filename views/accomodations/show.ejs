@@ -22,6 +22,9 @@
                         <em>Posted By: <%= accomodation.author.username %></em>
                     </p> 
                     <a class="btn btn-warning" href="/accomodations/<%= accomodation.id %>/edit">EDIT</a>
+                    <form id="del-btn" action="/accomodations/<%= accomodation.id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">DELETE</button>
+                    </form>
                 </div>
             </div>
             <div class="well">

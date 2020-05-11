@@ -10,7 +10,7 @@ var seedDB = require("./seeds");
 var Comment = require("./models/comment");
 var User = require("./models/user");
 
-//requiring routes
+//requiring routes / folders
 var accRoutes = require("./routes/accomodations")
 var commentRoutes = require("./routes/comments")
 var indexRoutes = require("./routes/index")

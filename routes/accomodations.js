@@ -90,8 +90,6 @@ expressRouter.get("/accomodations/:id/edit", function(req, res){
     });
 });
 
-
-
 //Update accomodation
 expressRouter.put("/accomodations/:id", function(req, res){
     //find and update correct accomodation
@@ -99,10 +97,22 @@ expressRouter.put("/accomodations/:id", function(req, res){
         if(err){
             res.redirect("/");
         } else {
-            res.redirect("/accomodations/" + req.params.id);
+            res.redirect("/accomodations/" + req.params.id);     //redirect to accomodation that was edited
+
         }
     });
-    //redirect to index
+});
+
+//Remove accomodation
+expressRouter.delete("/accomodations/:id", function(req, res){
+    // res.send("ATTEMPT AT REMOVING ACCOMODATION")
+    Accomodation.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            res.redirect("/accomodations");
+        } else {
+            res.redirect("/accomodations");
+        }
+    });
 });
 
 
