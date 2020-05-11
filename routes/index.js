@@ -13,6 +13,14 @@ expressRouter.get("/", function(req, res){
 });
 
 
+//Used for "accomodations" on Nav Bar"
+app.get("/accomodations", function(req, res){
+    res.render("accomodations/index");
+});
+
+
+
+
 
 
 
