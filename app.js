@@ -40,6 +40,7 @@ app.use(bodyParser.urlencoded({extended: true})); //tells express to user body-p
 app.set("view engine", "ejs"); //Removes the need for adding .ejs file extension
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method")); //tells override what to search for so it knows where to override i.e wherever "_method" is.
+app.use(express.json()) //Used to Sanitise Input
 
 seedDB(); //fills db with generic accomodations + comment
 
