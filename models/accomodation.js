@@ -1,4 +1,4 @@
-//This class handles the accomodationSchema, and will be called in when required
+//This class handles the schema for accomodations, and will be called in when required
 //Taken out of APP.JS for structural reasons, plus making the code neater
 var mongoose = require("mongoose");
 

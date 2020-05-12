@@ -13,6 +13,7 @@ var Comment = require("../models/comment")
     //connect the new comment to the accomdodation
     //redirect to accomodations show page
 //isLogged checks if the user is logged in, if so they may add a new comment
+
 //Comments NEW
 expressRouter.get("/accomodations/:id/comments/new",isLoggedIn, function(req, res){
     //find accomodation by the ID

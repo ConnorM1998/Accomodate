@@ -1,3 +1,6 @@
+//This class handles the schema for users, and will be called in when required
+//Taken out of APP.JS for structural reasons, plus making the code neater
+
 var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
 
