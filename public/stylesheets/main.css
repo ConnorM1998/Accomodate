@@ -43,6 +43,18 @@ body{
     height:2rem;
 }
 
+/* #edit-remove{
+    float: right;
+} */
+
 #del-btn{
+    float: right;
     display: inline;
+}
+
+
+
+#brand{
+    font-size: xx-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

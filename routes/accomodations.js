@@ -79,19 +79,18 @@ expressRouter.get("/accomodations/:id", function(req, res){
 });
 
 
+
+
+
 //Edit accomodation
-expressRouter.get("/accomodations/:id/edit", function(req, res){
+expressRouter.get("/accomodations/:id/edit", checkOwnership, function(req, res){
     Accomodation.findById(req.params.id, function(err, foundAccomodation){
-        if(err){
-            res.redirect("/accomodations")
-        }else {
-            res.render("accomodations/edit", {accomodation: foundAccomodation});
-        }
+        res.render("accomodations/edit", {accomodation: foundAccomodation});       
     });
 });
 
 //Update accomodation
-expressRouter.put("/accomodations/:id", function(req, res){
+expressRouter.put("/accomodations/:id",checkOwnership, function(req, res){
     //find and update correct accomodation
     Accomodation.findByIdAndUpdate(req.params.id, req.body.accomodation, function(err, updatedAcc){
         if(err){
@@ -104,7 +103,7 @@ expressRouter.put("/accomodations/:id", function(req, res){
 });
 
 //Remove accomodation
-expressRouter.delete("/accomodations/:id", function(req, res){
+expressRouter.delete("/accomodations/:id",checkOwnership, function(req, res){
     // res.send("ATTEMPT AT REMOVING ACCOMODATION")
     Accomodation.findByIdAndRemove(req.params.id, function(err){
         if(err){
@@ -125,5 +124,28 @@ function isLoggedIn(req,res,next){
     }
     res.redirect("/login");
 }
+
+
+function checkOwnership(req, res, next) {
+    if(req.isAuthenticated()){
+        Accomodation.findById(req.params.id, function(err, foundAccomodation){
+            if(err){
+                res.redirect("back")
+            }else {
+                //Does user own accomodation?
+                if(foundAccomodation.author.id.equals(req.user._id)){  //Check if author.id of accomodation matches currently logged in user's id
+                    next();
+                } else{
+                    console.log("You are not the owner, thus don't have permission");
+                    res.redirect("back");
+                }
+            }
+        });
+    }else {
+        console.log("Login required for this action");
+        res.redirect("back");
+    }
+}
+
 
 module.exports = expressRouter;
