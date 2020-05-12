@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'vegan';
+    src: url(fonts/vegan.ttf);
+    font-style: normal;
+    font-weight: 100;;
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+slider {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+    position: absolute;
+}
+
+slider > * {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: black;
+    animation: slide 12s infinite;
+    overflow: hidden;
+}
+
+slide:nth-child(1) {
+    left: 0%;
+    animation-delay: -1s;
+    background-image: url("https://images.pexels.com/photos/2877080/pexels-photo-2877080.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+}
+
+slide:nth-child(2) {
+    left: 100%;
+    animation-delay: 2s;
+    background-image: url("https://images.pexels.com/photos/2921575/pexels-photo-2921575.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+}
+
+slide:nth-child(3) {
+    left: 100%;
+    animation-delay: 5s;
+    background-image: url("https://images.pexels.com/photos/2187605/pexels-photo-2187605.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+}
+
+slide:nth-child(4) {
+    left: 100%;
+    animation-delay: 8s;
+    background-image: url("https://images.pexels.com/photos/2452361/pexels-photo-2452361.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+slide p {
+    font-family: vegan;
+    font-size: 70px;
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin-top: 340px;
+}
+
+
+slide a{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 100px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 700px;
+    right: 700px;
+    text-align: center;
+    margin-top: 500px;
+    border-radius: 20px;
+    color: white;
+    background-color: green;
+}
+
+slide a:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+@keyframes slide {
+    0% { left: 100%; width: 100%;}
+    5% { left: 0%;}
+    25%{ left: 0%;}
+    30%{ left: -100%; width: 100%;}
+    30.0001%{left: -100%; width: 0%;}
+    100%{ left: 100%; width: 0;}
+}

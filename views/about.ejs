@@ -1,0 +1,93 @@
+<!-- Adds header to page -->
+<%- include("partials/header") %>
+
+<h1>About Page</h1>
+
+<div class="container">
+    <div class="About">
+        <div class= "Purpose">
+            <h2>What is the purpose?</h2>
+            <p>
+                Welcome to Accomodate, this website allows users to sign up, post accomodations
+                from around the world and leave comments on such locations.         
+            </p>
+            <div class= "Github">    
+                <a href="https://github.com/ConnorM1998/Accomodate"><h3>GitHub Link!</h3></a>
+            </div>  
+        </div>
+        <div class= "Tools">
+            <h2>Tools Used:</h2>
+            <a href="https://nodejs.org/en/about/"><h3>Node.js</h3></a>
+            <p>
+                Node.js made up the backend of the application         
+            </p>   
+            <a href="https://nodejs.org/en/about/"><h3>BOOT STRAP =======.js</h3></a>
+            <p>
+                Node.js made up the backend of the application         
+            </p>       
+            <a href="https://www.mongodb.com/"><h3>MongoDB</h3></a>
+            <p>
+                Allowed for the storage of Accomodations/Users/Comments into databases.
+                Used for Local Development        
+            </p>   
+            <a href="https://www.mongodb.com/cloud/atlas"><h3>MongoDB Atlas</h3></a>
+            <p>
+                Allowed for MongoDB databases to be stored in cloud, allowing for easy integration
+                with the heroku server.          
+            </p>  
+            <a href="https://www.heroku.com/about"><h3>Heroku</h3></a>
+            <p>
+                Used to deploy the application giving it its own server, allowing access from anywhere         
+            </p>     
+        </div>
+        <div class= "Dependencies">
+            <h2>Dependencies:</h2>
+            <a href="https://www.npmjs.com/package/body-parser"><h3>Body-Parser</h3></a>
+            <p>
+                Provides a middleware that parses incoming request bodies before the handlers     
+            </p>    
+            <a href="https://ejs.co/"><h3>EJS</h3></a>
+            <p>
+                EJS allowed for the generation of HTML markup with plain JavaScript.     
+            </p> 
+            <a href="https://expressjs.com/"><h3>Express.js</h3></a>
+            <p>
+                Express.js is a web framework that handled routing on the website. Also <a href="https://www.npmjs.com/package/express-session">express-sesion</a> helped
+                with giving a user a specific session, e.g. when logged in.      
+            </p> 
+            <a href="https://mongoosejs.com/"><h3>Mongoose</h3></a>
+            <p>
+                Provided a schema-based solution to modeling application data       
+            </p>           
+            <a href="http://www.passportjs.org/"><h3>Passport</h3></a>
+            <p>
+                An authentication middleware that works with express, handles the creation of 
+                user accounts. Allows for username/password authentication.  <a href="http://www.passportjs.org/packages/passport-local/">passport-local</a> aswell as
+                <a href="https://github.com/saintedlama/passport-local-mongoose">passport-local-mongoose</a> were used to increase functionality/support
+            </p>         
+            <a href="http://www.passportjs.org/"><h3>=======METHOD-OVERRIDE</h3></a>
+            <p>
+                An authentication middleware that works with express, handles the creation of 
+                user accounts. Allows for username/password authentication.  <a href="http://www.passportjs.org/packages/passport-local/">passport-local</a> aswell as
+                <a href="https://github.com/saintedlama/passport-local-mongoose">passport-local-mongoose</a> were used to increase functionality/support
+            </p>                        
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Sets a link to accomodations page -->
+<a href="/accomodations">View Accomodations</a>
+
+
+<!-- Adds footer to page -->
+<%- include("partials/footer") %>

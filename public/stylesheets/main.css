@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'cinderela';
+    src: url(fonts/cinderela.ttf);
+    font-style: normal;
+    font-weight: 100;;
+}
+
+#brand{
+    font-size: x-large;
+    font-family: cinderela;
+    font-weight: 100;
+}
+
 .thumbnail img{
     width:100%;
 }
@@ -54,7 +67,3 @@ body{
 
 
 
-#brand{
-    font-size: xx-large;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}

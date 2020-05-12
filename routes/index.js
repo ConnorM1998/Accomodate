@@ -12,6 +12,11 @@ expressRouter.get("/", function(req, res){
     res.render("landing"); //is views/landing.ejs
 });
 
+//Sets up use for /about page
+expressRouter.get("/about", function(req, res){
+    res.render("about"); //is views/about.ejs
+});
+
 
 //Used for "accomodations" on Nav Bar"
 expressRouter.get("/accomodations", function(req, res){
