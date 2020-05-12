@@ -1,13 +1,16 @@
+<!-- This class provides the "edit" form -->
+
 <!-- Adds header to page -->
 <%- include("../partials/header") %>
 
 <div class="container">
     <div class="row">
-
         <h1 style = "text-align: center;">Edit <%= accomodation.name %></h1>
         <div style="width: 30%; margin: 30px auto;">
             <!-- Links back to "/accomodations" POST route in "app.js" -->
             <!-- Recieves data and adds to accomodations array-->
+            <!-- lets "method-override" package to work here -->
+            <!-- overrides POST request as a PUT (since its updating the values, not making new ones) -->
             <form action="/accomodations/<%= accomodation._id%>?_method=PUT" method="POST">
                 <div class="form-group">
                     <input class="form-control" type="text" name="accomodation[name]" value="<%= accomodation.name %>">

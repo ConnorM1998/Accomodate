@@ -44,7 +44,7 @@ slider > * {
 slide:nth-child(1) {
     left: 0%;
     animation-delay: -1s;
-    background-image: url("https://images.pexels.com/photos/2877080/pexels-photo-2877080.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-image: url("https://images.pexels.com/photos/542312/pexels-photo-542312.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
     background-size: cover;
     background-position: center;
 }

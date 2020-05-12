@@ -1,3 +1,6 @@
+<!-- This class handles the index pages, which dispays a brief thumbnail
+     of all the accomodations, aswell as the option to add a new accomodation -->
+
 <!-- Adds header to page -->
 <%- include("../partials/header") %>
 
@@ -6,11 +9,11 @@
     <header class="jumbotron">
         <!-- Container ensures text is not squished on resize -->
         <div class="container">
-        <h1>Accomodations Page</h1>
-        <p>Here are all the accomodations all around Scotland</p>
+        <h1>Accommodations Page</h1>
+        <p>Here are all the accommodations from all around World!</p>
         <p>
             <!-- Button that routes user to "/accomodations/new" -->
-            <a class="btn btn-primary btn-lg" href="/accomodations/new">Add new Accomodation</a>
+            <a class="btn btn-success btn-lg" href="/accomodations/new">Add new Accommodation</a>
         </p>
         </div>
     </header>
@@ -18,7 +21,7 @@
     <!-- ////////////// -->
     <div class="row">
         <div class="col-lg-12">
-            <h3>Popular Accomodations</h3>
+            <h3>Submitted Accommodations:</h3>
         </div> 
     </div>
 <!-- ////////////// -->

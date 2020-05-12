@@ -1,9 +1,13 @@
+<!-- This class handles the about page, which displays the purpose of the application,
+     the tools used to create it, and any packages/dependencies that come with the application -->
+
 <!-- Adds header to page -->
 <%- include("partials/header") %>
 
-<h1>About Page</h1>
+
 
 <div class="container">
+    <h1>About Page</h1>
     <div class="About">
         <div class= "Purpose">
             <h2>What is the purpose?</h2>
@@ -21,9 +25,9 @@
             <p>
                 Node.js made up the backend of the application         
             </p>   
-            <a href="https://nodejs.org/en/about/"><h3>BOOT STRAP =======.js</h3></a>
+            <a href="https://nodejs.org/en/about/"><h3>Bootstrap</h3></a>
             <p>
-                Node.js made up the backend of the application         
+                A toolkit that helped style and make the application responsive (to resizing)       
             </p>       
             <a href="https://www.mongodb.com/"><h3>MongoDB</h3></a>
             <p>
@@ -40,7 +44,7 @@
                 Used to deploy the application giving it its own server, allowing access from anywhere         
             </p>     
         </div>
-        <div class= "Dependencies">
+        <div class= "Packages/Dependencies">
             <h2>Dependencies:</h2>
             <a href="https://www.npmjs.com/package/body-parser"><h3>Body-Parser</h3></a>
             <p>
@@ -65,28 +69,16 @@
                 user accounts. Allows for username/password authentication.  <a href="http://www.passportjs.org/packages/passport-local/">passport-local</a> aswell as
                 <a href="https://github.com/saintedlama/passport-local-mongoose">passport-local-mongoose</a> were used to increase functionality/support
             </p>         
-            <a href="http://www.passportjs.org/"><h3>=======METHOD-OVERRIDE</h3></a>
+            <a href="https://www.npmjs.com/package/method-override"><h3>Method-Override</h3></a>
             <p>
-                An authentication middleware that works with express, handles the creation of 
-                user accounts. Allows for username/password authentication.  <a href="http://www.passportjs.org/packages/passport-local/">passport-local</a> aswell as
-                <a href="https://github.com/saintedlama/passport-local-mongoose">passport-local-mongoose</a> were used to increase functionality/support
+                Allows for the overriding of METHOD verbs, i.e. POST overriden to PUT METHOD
             </p>                        
 
-
         </div>
-
-
-
     </div>
 </div>
 
 
-
-
-
-
-<!-- Sets a link to accomodations page -->
-<a href="/accomodations">View Accomodations</a>
 
 
 <!-- Adds footer to page -->

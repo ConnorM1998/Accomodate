@@ -1,3 +1,7 @@
+<!-- This class expands the details about the accomodation once "More info" is clicked,
+     includes comments -->
+
+
 <!-- Adds header to page -->
 <%- include("../partials/header") %>
 
@@ -17,6 +21,8 @@
                     </p>
                     
                     <div class="edit-remove">
+                        <!-- Checks if user logged in owns the accomodation, 
+                            if true display buttons, else do not display them -->
                         <% if(currentUser && accomodation.author.id.equals(currentUser._id)){ %>
                             <a id="edit-btn" class="btn btn-warning" href="/accomodations/<%= accomodation.id %>/edit">EDIT</a>
                             <form id="del-btn" action="/accomodations/<%= accomodation.id %>?_method=DELETE" method="POST">
@@ -34,7 +40,7 @@
                     <div class="row">
                         <div class="col-md-12"></div>
                         <strong><%= comment.author.username %></strong>
-                        <span class="pull-right">2 hours ago</span>
+                        <span class="pull-right">a minute ago</span>
                         <p>
                             <%= comment.text %>
                         </p>

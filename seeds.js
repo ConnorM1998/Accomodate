@@ -99,7 +99,7 @@ function seedAccData() {
                             console.log(`${accomodationData.name} added...`);
                             Comment.create({
                                 text:
-                                    "Generic Seed Comment:\nSEED Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris congue efficitur mi, a euismod tortor auctor nec. Ut tempor faucibus est, et viverra erat blandit eget. Nam ut hendrerit erat. Nam a leo augue. Quisque tincidunt quam in efficitur volutpat. Nullam gravida dictum arcu sed fermentum. Pellentesque tincidunt finibus lacus.",
+                                    "Generic Seed Comment:\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare dolor ut felis dignissim, sed ornare risus ullamcorper. Nam nec tortor sollicitudin, dapibus quam eget, sodales sem. Proin non bibendum magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent ac fringilla arcu. In porttitor ex orci. Pellentesque nisl risus, cursus vel ultricies nec, suscipit a nisl. Duis gravida leo quis risus cursus, non malesuada metus ornare. Duis et ex finibus, lacinia velit sit amet, venenatis nisi. Cras ut libero arcu. Nam eget purus elementum, ultricies dolor eu, mattis nibh. ",
                                 author: { id: userData._id, username: userData.username }
                             })
                                 .then(newComment => {

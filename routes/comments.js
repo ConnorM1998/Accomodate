@@ -1,3 +1,5 @@
+// This class handles the routing of all the pages related 
+//to comments (found in views/comments)
 var express = require("express");
 
 var expressRouter = express.Router();
@@ -9,12 +11,10 @@ var Comment = require("../models/comment")
 //==================
 //NESTED COMMENT ROUTES
 //==================
-    //create new comment
-    //connect the new comment to the accomdodation
-    //redirect to accomodations show page
-//isLogged checks if the user is logged in, if so they may add a new comment
-
-//Comments NEW
+//Checks user is logged in
+//Directs to new comment form
+//comment form is asscociated with chosen accomodation (in DB)
+//Comments NEW 
 expressRouter.get("/accomodations/:id/comments/new",isLoggedIn, function(req, res){
     //find accomodation by the ID
     Accomodation.findById(req.params.id, function(err, accomodation){
@@ -56,6 +56,10 @@ expressRouter.post("/accomodations/:id/comments", function(req, res){
 
 });
 
+
+//function that checks to see if a user is logged in
+//if so, proceed
+//else redirect to login
 function isLoggedIn(req,res,next){
     if(req.isAuthenticated()){
         //Next refers to the next step in the function (just carries on), else it redirects

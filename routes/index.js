@@ -1,5 +1,6 @@
-var express = require("express");
+// This class handles the routing of the rest of the pages found in the views directory 
 
+var express = require("express");
 var expressRouter = express.Router();
 
 //dependencies
@@ -22,10 +23,6 @@ expressRouter.get("/about", function(req, res){
 expressRouter.get("/accomodations", function(req, res){
     res.render("accomodations/index");
 });
-
-
-
-
 
 
 

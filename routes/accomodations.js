@@ -1,7 +1,10 @@
-var express = require("express");
+// This class handles the routing of all the pages related 
+//to accomodations (found in views/accomodations)
 
+var express = require("express");
 var expressRouter = express.Router();
 
+//provides the accomodationSchema, allowing for accomodations to be passed 
 var Accomodation = require("../models/accomodation");
 
 
@@ -19,7 +22,6 @@ expressRouter.get("/accomodations", function(req, res){
             //Allows the database to be displayed on the "accomodations page"       
             //res.render("accomodations/index", {accomodations:allAccomodation});
             res.render("accomodations/index", {accomodations:allAccomodation, currentUser: req.user}); //
-
         }
     });
 });
@@ -82,14 +84,14 @@ expressRouter.get("/accomodations/:id", function(req, res){
 
 
 
-//Edit accomodation
+//Edit accomodation - Provides a form the user can change
 expressRouter.get("/accomodations/:id/edit", checkOwnership, function(req, res){
     Accomodation.findById(req.params.id, function(err, foundAccomodation){
         res.render("accomodations/edit", {accomodation: foundAccomodation});       
     });
 });
 
-//Update accomodation
+//Update accomodation - Where the edit form is pushed to
 expressRouter.put("/accomodations/:id",checkOwnership, function(req, res){
     //find and update correct accomodation
     Accomodation.findByIdAndUpdate(req.params.id, req.body.accomodation, function(err, updatedAcc){
@@ -127,14 +129,16 @@ function isLoggedIn(req,res,next){
 
 
 function checkOwnership(req, res, next) {
+    //Checks user is logged in
     if(req.isAuthenticated()){
+        //Gets accomodation from db
         Accomodation.findById(req.params.id, function(err, foundAccomodation){
             if(err){
                 res.redirect("back")
             }else {
                 //Does user own accomodation?
                 if(foundAccomodation.author.id.equals(req.user._id)){  //Check if author.id of accomodation matches currently logged in user's id
-                    next();
+                    next(); //proceed
                 } else{
                     console.log("You are not the owner, thus don't have permission");
                     res.redirect("back");
