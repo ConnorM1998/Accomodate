@@ -13,6 +13,13 @@ html, body {
     margin: 0;
 }
 
+#landing-info{
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
 
 
 slider {
@@ -68,7 +75,7 @@ slide:nth-child(4) {
 
 
 
-slide p {
+ slide p {
     font-family: vegan;
     font-size: 70px;
     font-weight: 500;
@@ -77,24 +84,8 @@ slide p {
     text-align: center;
     display: inline-block;
     width: 100%;
-    margin-top: 340px;
 }
 
-
-slide a{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 100px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 700px;
-    right: 700px;
-    text-align: center;
-    margin-top: 500px;
-    border-radius: 20px;
-    color: white;
-    background-color: green;
-}
 
 slide a:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
